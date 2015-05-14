@@ -1,0 +1,326 @@
+//////////////////////////////////////////////////////
+//  Mixins File                                     //
+//**************************************************//
+//  Creation Date: May 2015                         //
+//  Creator: Adrian Sauvageot                       //
+//  Version: 1.0                                    //
+//**************************************************//
+//  This file contains useful mix-ins that can be   //
+//  used when using less css.  Each mix-in has a    //
+//  description in the comment section above it.    //
+//////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////
+//                     SHADOWS                      //
+//////////////////////////////////////////////////////
+
+// @string is the string for the text-shadow in format: "h-shadow v-shadow blur-radius color"  Can also be "none", "initial" or "inherit"
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+    /**
+    * Text Shadow applies a shadow to a piece fo text.
+    */
+    text-shadow: @string;
+}
+
+// @string is the string for the text-shadow in format: "h-shadow v-shadow blur-radius spread color"  Can also be "none", "initial" or "inherit"
+.box-shadow (@string: 0 1px 3px 0 rgba(0, 0, 0, 0.25)) {
+    /**
+    * Box Shadow is a shadow along the edges of a box.
+    */
+	-webkit-box-shadow: @string;
+	-moz-box-shadow:    @string;
+	box-shadow:         @string;
+}
+
+// @x is the h-shadow
+// @y is the vertical shadow
+// @blur is the blur
+// @spread is the spread of the shadow
+// @alpha is the opacity of the shadow (how harsh)
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+    /**
+    * An inner shadow is used to create a shadow in the inside of an element.
+    */
+	-webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow:    inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow:         inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+//////////////////////////////////////////////////////
+//                    BOX SIZING                    //
+//////////////////////////////////////////////////////
+
+// @type is the type needed.  Options are "content-box", "border-box", "initial" or "inherit"
+.box-sizing (@type: border-box) {
+    /**
+    * Box Sizing specifies how the padding and border work with a div.
+    */
+	-webkit-box-sizing: @type;
+	-moz-box-sizing:    @type;
+	box-sizing:         @type;
+}
+
+//////////////////////////////////////////////////////
+//                     BORDERS                      //
+//////////////////////////////////////////////////////
+
+// @radius is the amount to round the borders by.
+.border-radius (@radius: 5px) {
+    /**
+    * Border Radius is used to make rounded corners on elements.
+    */
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+// @topRight is the top right hand corner
+// @bottomRight is the bottom right hand corner
+// @topLeft is the top left hand corner
+// @bottomLeft is the bottom left hand corner
+.border-radiuses (@topRight: 0, @bottomRight: 0, @bottomLeft: 0, @topLeft: 0) {
+    /**
+    * Border Radiuses allows you to control each corner of the element separately. 
+    */
+	-webkit-border-top-right-radius:    @topright;
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius:  @bottomleft;
+	-webkit-border-top-left-radius:     @topleft;
+
+	-moz-border-radius-topright:        @topright;
+	-moz-border-radius-bottomright:     @bottomright;
+	-moz-border-radius-bottomleft:      @bottomleft;
+	-moz-border-radius-topleft:         @topleft;
+
+	border-top-right-radius:            @topright;
+	border-bottom-right-radius:         @bottomright;
+	border-bottom-left-radius:          @bottomleft;
+	border-top-left-radius:             @topleft;
+
+	-moz-background-clip:    padding; 
+	-webkit-background-clip: padding-box; 
+	background-clip:         padding-box; 
+}
+
+//////////////////////////////////////////////////////
+//                    OPACITY                       //
+//////////////////////////////////////////////////////
+
+// @opacity a value between 1-(full strength) and 0-(invisible)
+.opacity (@opacity: 0.5) {
+    /**
+    * Opacity sets the opacity of an element.
+    */
+	-webkit-opacity: 	@opacity;
+	-moz-opacity: 		@opacity;
+	opacity: 		@opacity;
+}
+
+//////////////////////////////////////////////////////
+//                   GRADIENTS                      //
+//////////////////////////////////////////////////////
+
+// @startColor a color at the top of the gradient
+// @endColor a color at the bottom of the gradient
+.gradient (@startColor: #eee, @endColor: white) {
+    /**
+    * Gradient is used to create a gradient across an element (Vertical - starting at top).
+    */
+    background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+    background: -ms-linear-gradient(top, @startColor 100%, @endColor 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@startColor, endColorstr=@endColor,GradientType=0 ); 
+    background: linear-gradient(top, @startColor, @endColor); 
+}
+
+// @startColor a color at the top of the gradient
+// @endColor a color at the bottom of the gradient
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+    /**
+    * Gradient is used to create a gradient across an element (Horizontal - starting at left).
+    */
+    background-color: @startColor;
+	background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+	background-image: -moz-linear-gradient(left, @startColor, @endColor);
+	background-image: -ms-linear-gradient(left, @startColor, @endColor);
+	background-image: -o-linear-gradient(left, @startColor, @endColor);
+    background: -ms-linear-gradient(left, @startColor 100%, @endColor 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=@startColor, endColorstr=@endColor,GradientType=1 ); 
+    background: linear-gradient(left, @startColor, @endColor); 
+}
+
+.fixed-background{
+    background-attachment: fixed;    
+}
+
+//////////////////////////////////////////////////////
+//             ANIMATION AND TRANSITION             //
+//////////////////////////////////////////////////////
+
+// @name a name for the animation
+// @duration the time for an animation to take place
+// @delay the time it takes for the animation to start
+// @ease specifies how the animation speed changed through the animation options are "ease", "linear", "ease-in" or "ease-out" 
+.animation (@name, @duration: 300ms, @delay: 0, @ease: ease) {
+    /**
+    * Animation causes an animation using css.
+    */
+    -webkit-animation: @name @duration @delay @ease;
+	-moz-animation:    @name @duration @delay @ease;
+	-ms-animation:     @name @duration @delay @ease;
+}
+
+// @transition is a string that holds all the transition times example: "width 2s"
+.transition (@transition) { 
+    /**
+    * Allows the smooth transition between css styles.
+    */
+    -webkit-transition: @transition;  
+	-moz-transition:    @transition;
+	-ms-transition:     @transition; 
+	-o-transition:      @transition;  
+}
+
+//////////////////////////////////////////////////////
+//               TRANSFORMATIONS                    //
+//////////////////////////////////////////////////////
+
+// @string is a string representing the transformation to take place options are: 
+// "none", "matrix(n,n,n,n,n,n)", "matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)", "translate(x,y)", "translate3d(x,y,z)", 
+// "translateX(x)", "translateY(y)", "translateZ(z)", "scale(x,y)", "scale3d(x,y,z)", "scaleX(x)", "scaleY(y)", "scaleZ(z)",
+// "rotate(angle)", "rotate3d(x,y,z,angle)", "rotateX(angle)", "rotateY(angle)", "rotateZ(angle)", "skew(x-angle,y-angle)",
+// "skewX(angle)", "skewY(angle)", "perspective(n)", "initial", "inherit"
+.transform(@string){
+    /**
+    * Transform allows an element to be "transformed" example, moved, rotated, scaled etc.
+    */
+    -webkit-transform:   @string;
+	-moz-transform: 	 @string;
+	-ms-transform: 		 @string;
+	-o-transform: 		 @string;
+}
+
+// @factor the factor to scale by.  (1 is no scale, 2 is double the size, 0.5 is half)
+.scale (@factor) {
+    /**
+    * Scale scales an element by a factor
+    */
+    -webkit-transform:   scale(@factor);
+	-moz-transform: 	 scale(@factor);
+	-ms-transform: 		 scale(@factor);
+	-o-transform: 		 scale(@factor);
+}
+
+// @deg is the degrees for the element to be rotated example "180deg" rotates upside-down. 
+.rotate (@deg) {
+    /**
+    * Rotate rotates an element by an angle.
+    */
+    -webkit-transform:   rotate(@deg);
+	-moz-transform: 	 rotate(@deg);
+	-ms-transform: 		 rotate(@deg);
+	-o-transform: 		 rotate(@deg);
+}
+
+// @deg is the skew along the x axis
+// @deg2 is the skew along the y axis
+.skew (@deg, @deg2) {
+    /**
+    * Skew will skew an element.
+    */
+    -webkit-transform:   skew(@deg, @deg2);
+	-moz-transform: 	 skew(@deg, @deg2);
+	-ms-transform: 		 skew(@deg, @deg2);
+	-o-transform: 		 skew(@deg, @deg2);
+}
+
+// @x moves the element on the x axis
+// @y moves the element on the y axis
+.translate (@x, @y:0) {
+    /**
+    * Translate moves an element on a page.
+    */
+    -webkit-transform:   translate(@x, @y);
+	-moz-transform: 	 translate(@x, @y);
+	-ms-transform: 		 translate(@x, @y);
+	-o-transform: 		 translate(@x, @y);
+}
+
+// @x moves the element on the x axis
+// @y moves the element on the y axis
+// @z moves the element on the z axis
+.translate3d (@x, @y: 0, @z: 0) {
+    /**
+    * Translate 3D moves an element on a page in 3 dimensions.
+    */
+    -webkit-transform:   translate3d(@x, @y, @z);
+	-moz-transform: 	 translate3d(@x, @y, @z);
+	-ms-transform: 		 translate3d(@x, @y, @z);
+	-o-transform: 		 translate3d(@x, @y, @z);
+}
+
+// @value is the amount of perspective
+.perspective (@value: 1000) {
+    /**
+    * Perspective will create a perspective view on an element.
+    */
+    -webkit-perspective: 	@value;
+	-moz-perspective: 	@value;
+	-ms-perspective: 	@value;
+	perspective: 		@value;
+}
+
+// @x is the position on the x axis
+// @y is the position on the y axis
+.transform-origin (@x:center, @y:center) {
+    /**
+    * Transform Origin changes the position of a transformed element.
+    */
+    -webkit-transform-origin: @x @y;
+	-moz-transform-origin:    @x @y;
+	-ms-transform-origin:     @x @y;
+	-o-transform-origin:      @x @y;
+}
+
+// @length is the length the reflection ends from the base (higher the % smaller the reflection)
+// @opacity is the opacity of the reflection (0 invisible, 1 full)
+.reflect (@length: 50%, @opacity: 0.2){
+    /**
+    * Reflect will reflect the element.
+    */
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(@length, transparent), to(rgba(255,255,255,@opacity)));
+}
+
+//////////////////////////////////////////////////////
+//              WIDTH AND HEIGHT                    //
+//////////////////////////////////////////////////////
+
+// @topNum the top number (portion)
+// @bottomNum the bottom number (whole)
+.width-fraction(@topNum: 1, @bottomNum: 2){
+    /**
+    * Sets the width of an element
+    */
+    width: (@topNum/@bottomNum)*100%;
+}
+
+// @topNum the top number (portion)
+// @bottomNum the bottom number (whole)
+.height-fraction(@topNum: 1, @bottomNum: 2){
+    /**
+    * Sets the height of an element
+    */
+    height: (@topNum/@bottomNum)*100%;
+}
+
+
